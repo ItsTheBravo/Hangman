@@ -1,3 +1,4 @@
+"""Module providing time functionality."""
 import time
 import random
 import gspread
@@ -39,7 +40,8 @@ def display_word():
     """
     This function displays the current state of the word being guessed
     """
-    word = [letter if letter in correct_guesses else "_" for letter in secret_word]
+    word = [letter if letter in correct_guesses
+            else "_" for letter in secret_word]
     print(" ".join(word))
 
 
@@ -168,7 +170,8 @@ def menu():
             add_word()
         elif option == "3":
             confirm = input(
-                "Are you sure you want to exit the program? Press 'y' to confirm: ")
+                "Are you sure you want to exit the program? \
+                     Press 'y' to confirm: ")
             if confirm.lower() == "y":
                 print("Exiting program...")
                 break
