@@ -23,7 +23,7 @@ def get_guess():
     This function takes a guess from the player
     """
     while True:
-        guess = input('Guess a letter: ').lower()
+        guess = input('Guess a letter: \n').lower()
 
         if len(guess) != 1:
             print('Please enter a single letter.')
@@ -60,7 +60,7 @@ def play_again():
     This function asks the player if they want to play again
     """
     while True:
-        answer = input("Do you want to play again? (y/n) ")
+        answer = input("Do you want to play again? (y/n) \n")
         answer = answer.lower()
 
         if answer == "y":
@@ -113,7 +113,7 @@ def add_word():
     This function allows the user to add words to the spreadsheet
     """
     level = get_level()
-    word = input("Enter a new word: ")
+    word = input("Enter a new word: \n")
     last_row = len(words.get_all_values())
     words.update_cell(last_row + 1, level, word)
     print(f"{word} has been added to the {level} level!")
@@ -171,7 +171,7 @@ def menu():
         elif option == "3":
             confirm = input(
                 "Are you sure you want to exit the program? \
-                     Press 'y' to confirm: ")
+                     Press 'y' to confirm: \n")
             if confirm.lower() == "y":
                 print("Exiting program...")
                 break
