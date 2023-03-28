@@ -14,7 +14,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GPSREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GPSREAD_CLIENT.open('hangman_words')
 
-sales = SHEET.worksheet('Easy')
+words = SHEET.worksheet('Easy')
 
 
 def get_guess():
@@ -112,6 +112,17 @@ def get_level():
             return level
 
 
+def add_word():
+    """
+    This function allows the user to add words to the spreadsheet
+    """
+    level = get_level()
+    word = input("Enter a new word: ")
+    last_row = len(words.get_all_values())
+    words.update_cell(last_row + 1, level, word)
+    print(f"{word} has been added to the {level} level!")
+
+
 def start():
     """
     Method to start the game
@@ -124,7 +135,7 @@ def start():
     print("The game is starting!\nTime to  play Hangman!")
     time.sleep(3)
     word_num = random_word()
-    secret_word = sales.cell(word_num, level).value
+    secret_word = words.cell(word_num, level).value
     print(secret_word)
     turns = 10
     correct_guesses = []
@@ -143,4 +154,27 @@ def start():
             turns -= 1
 
 
-start()
+def menu():
+    """
+    Method for main menu
+    """
+    while True:
+        print("Hello, welcome to hangman! What would you like to do?")
+        option = input(
+            'Please choose an option: \n1) Play game 2) Add words 3) Exit  \n')
+
+        if option == "1":
+            start()
+        elif option == "2":
+            add_word()
+        elif option == "3":
+            confirm = input(
+                "Are you sure you want to exit the program? Press 'y' to confirm: ")
+            if confirm.lower() == "y":
+                print("Exiting program...")
+                break
+        else:
+            print('Please enter a one of the options.')
+
+
+menu()
