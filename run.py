@@ -17,10 +17,11 @@ try:
     GPSREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
     SHEET = GPSREAD_CLIENT.open('hangman_words')
 except Exception as e:
-    print("An error occurred while accessing the spreadsheet: {}".format(str(e)))
+    print("An error occurred while accessing the spreadsheet: \
+        {}".format(str(e)))
 
 # Worksheet in a google sheets doc.
-words = SHEET.worksheet('words')
+word_sheet = SHEET.worksheet('words')
 
 
 def get_guess():
@@ -28,17 +29,17 @@ def get_guess():
     This function takes a guess from the player
     """
     while True:
-        guess = input('Guess a letter: \n').lower()
+        player_guess = input('Guess a letter: \n').lower()
 
-        if len(guess) != 1:
+        if len(player_guess) != 1:
             print('Please enter a single letter.')
-        elif not guess.isalpha():
+        elif not player_guess.isalpha():
             print('Please enter a letter.')
-        elif guess in correct_guesses or guess in all_guesses:
+        elif player_guess in correct_guesses or player_guess in all_guesses:
             print('You have already guessed that letter. Choose again.')
         else:
-            all_guesses.append(guess)
-            return guess
+            all_guesses.append(player_guess)
+            return player_guess
 
 
 def display_word():
@@ -94,11 +95,11 @@ def random_word():
     """
     This function uses Random to take a random word from the sheet
     """
-    word = random.randint(1, len(words.get_all_values()))
+    word = random.randint(1, len(word_sheet.get_all_values()))
     return word
 
 
-def get_level():
+def get_difficulty_level():
     """
     This function takes a number from the player to pick the difficulty
     """
@@ -119,13 +120,14 @@ def add_word():
     """
     This function allows the user to add words to the spreadsheet
     """
-    level = get_level()
+    level = get_difficulty_level()
     word = input("Enter a new word: \n")
     try:
-        last_row = len(words.get_all_values())
-        words.update_cell(last_row + 1, level, word)
+        last_row = len(word_sheet.get_all_values())
+        word_sheet.update_cell(last_row + 1, level, word)
     except Exception as e:
-        print("An error occurred while updating the spreadsheet: {}".format(str(e)))
+        print("An error occurred while updating the spreadsheet:\
+             {}".format(str(e)))
     print(f"{word} has been added to the {level} level!")
 
 
@@ -135,24 +137,24 @@ def play_game():
     """
     global turns, correct_guesses, secret_word, random_word_index, all_guesses
     name = input("What is your name? \n")
-    level = get_level()
+    level = get_difficulty_level()
     print(f'Okay, {name}, lets play hangman!')
     time.sleep(2)
     print("The game is starting!\nTime to  play Hangman!")
     time.sleep(3)
     random_word_index = random_word()
-    secret_word = words.cell(random_word_index, level).value
+    secret_word = word_sheet.cell(random_word_index, level).value
     print(secret_word)
-    turns = 10
+    remaining_turns = 10
     correct_guesses = []
     all_guesses = []
-    while turns > 0:
-        print(f"You have {turns} turns left.")
+    while remaining_turns > 0:
+        print(f"You have {remaining_turns} turns left.")
         display_word()
-        guess = get_guess()
-        if guess in secret_word or guess in correct_guesses:
-            correct_guesses.append(guess)
-            if guess in secret_word:
+        player_guess = get_guess()
+        if player_guess in secret_word or player_guess in correct_guesses:
+            correct_guesses.append(player_guess)
+            if player_guess in secret_word:
                 print("Correct!")
                 if check_win():
                     end_game(True)
@@ -161,7 +163,7 @@ def play_game():
                 print("You have already guessed that letter. Choose again.")
         else:
             print("Incorrect!")
-            turns -= 1
+            remaining_turns -= 1
     end_game(False)
 
 
