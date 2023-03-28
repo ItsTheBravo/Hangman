@@ -17,7 +17,7 @@ SHEET = GPSREAD_CLIENT.open('hangman_words')
 words = SHEET.worksheet('Easy')
 
 
-def get_guess(correct_guesses):
+def get_guess():
     """
     This function takes a guess from the player
     """
@@ -28,9 +28,10 @@ def get_guess(correct_guesses):
             print('Please enter a single letter.')
         elif not guess.isalpha():
             print('Please enter a letter.')
-        elif guess in correct_guesses:
+        elif guess in correct_guesses or guess in all_guesses:
             print('You have already guessed that letter. Choose again.')
         else:
+            all_guesses.append(guess)
             return guess
 
 
@@ -120,7 +121,7 @@ def play_game():
     """
     Method to start the game
     """
-    global turns, correct_guesses, secret_word, word_num
+    global turns, correct_guesses, secret_word, word_num, all_guesses
     name = input("What is your name? \n")
     level = get_level()
     print(f'Okay, {name}, lets play hangman!')
@@ -132,19 +133,24 @@ def play_game():
     print(secret_word)
     turns = 10
     correct_guesses = []
+    all_guesses = []
     while turns > 0:
         print(f"You have {turns} turns left.")
         display_word()
-        guess = get_guess(correct_guesses)
-        if guess in secret_word:
+        guess = get_guess()
+        if guess in secret_word or guess in correct_guesses:
             correct_guesses.append(guess)
-            print("Correct!")
-            if check_win():
-                end_game(True)
-                return
+            if guess in secret_word:
+                print("Correct!")
+                if check_win():
+                    end_game(True)
+                    return
+            else:
+                print("You have already guessed that letter. Choose again.")
         else:
             print("Incorrect!")
             turns -= 1
+    end_game(False)
 
 
 def menu():
