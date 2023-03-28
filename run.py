@@ -17,18 +17,17 @@ SHEET = GPSREAD_CLIENT.open('hangman_words')
 words = SHEET.worksheet('Easy')
 
 
-def get_guess():
+def get_guess(correct_guesses):
     """
     This function takes a guess from the player
     """
     while True:
-        guess = input('Guess a letter: ')
-        guess = guess.lower()
+        guess = input('Guess a letter: ').lower()
 
         if len(guess) != 1:
             print('Please enter a single letter.')
-        elif guess not in 'abcdefghijklmnopqrstuvwxyz':
-            print('Please enter a LETTER.')
+        elif not guess.isalpha():
+            print('Please enter a letter.')
         elif guess in correct_guesses:
             print('You have already guessed that letter. Choose again.')
         else:
@@ -39,13 +38,8 @@ def display_word():
     """
     This function displays the current state of the word being guessed
     """
-    word = ""
-    for letter in secret_word:
-        if letter in correct_guesses:
-            word += letter
-        else:
-            word += "_"
-    print(word)
+    word = [letter if letter in correct_guesses else "_" for letter in secret_word]
+    print(" ".join(word))
 
 
 def check_win():
@@ -82,9 +76,8 @@ def end_game(win):
         print("Congratulations, you won!")
     else:
         print(f"Sorry, you lost. The word was {secret_word}.")
-        time.sleep(2)
     if play_again():
-        start()
+        play_game()
     else:
         print("Thanks for playing!")
 
@@ -123,7 +116,7 @@ def add_word():
     print(f"{word} has been added to the {level} level!")
 
 
-def start():
+def play_game():
     """
     Method to start the game
     """
@@ -142,7 +135,7 @@ def start():
     while turns > 0:
         print(f"You have {turns} turns left.")
         display_word()
-        guess = get_guess()
+        guess = get_guess(correct_guesses)
         if guess in secret_word:
             correct_guesses.append(guess)
             print("Correct!")
@@ -164,7 +157,7 @@ def menu():
             'Please choose an option: \n1) Play game 2) Add words 3) Exit  \n')
 
         if option == "1":
-            start()
+            play_game()
         elif option == "2":
             add_word()
         elif option == "3":
@@ -174,7 +167,7 @@ def menu():
                 print("Exiting program...")
                 break
         else:
-            print('Please enter a one of the options.')
+            print('Please enter one of the options.')
 
 
 menu()
