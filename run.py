@@ -91,7 +91,7 @@ def random_word():
     """
     This function uses Random to take a random word from the sheet
     """
-    word = random.randint(2, 11)
+    word = random.randint(1, len(words.get_all_values()))
     return word
 
 
