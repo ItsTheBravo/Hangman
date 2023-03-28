@@ -13,8 +13,11 @@ SCOPE = [
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GPSREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GPSREAD_CLIENT.open('hangman_words')
+try:
+    GPSREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+    SHEET = GPSREAD_CLIENT.open('hangman_words')
+except Exception as e:
+    print("An error occurred while accessing the spreadsheet: {}".format(str(e)))
 
 # Worksheet in a google sheets doc.
 words = SHEET.worksheet('words')
@@ -118,8 +121,11 @@ def add_word():
     """
     level = get_level()
     word = input("Enter a new word: \n")
-    last_row = len(words.get_all_values())
-    words.update_cell(last_row + 1, level, word)
+    try:
+        last_row = len(words.get_all_values())
+        words.update_cell(last_row + 1, level, word)
+    except Exception as e:
+        print("An error occurred while updating the spreadsheet: {}".format(str(e)))
     print(f"{word} has been added to the {level} level!")
 
 
