@@ -99,15 +99,17 @@ def get_level():
     """
     This function takes a number from the player to pick the difficulty
     """
+    options = {'1': 'Easy', '2': 'Medium', '3': 'Hard'}
+
     while True:
         level = input('Pick a difficulty: \n1) Easy 2) Medium 3) Hard  \n')
 
         if len(level) != 1:
             print('Please enter a single number.')
-        elif level not in '123':
-            print('Please enter a one of the options.')
+        elif level not in options:
+            print('Please enter a valid option.')
         else:
-            return level
+            return options[level]
 
 
 def add_word():
