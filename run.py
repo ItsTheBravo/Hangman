@@ -4,6 +4,7 @@ import random
 import gspread
 from google.oauth2.service_account import Credentials
 
+# Constant Variables for credentials, needed to access the spreadsheet.
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -15,7 +16,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GPSREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GPSREAD_CLIENT.open('hangman_words')
 
-words = SHEET.worksheet('Easy')
+# Worksheet in a google sheets doc.
+words = SHEET.worksheet('words')
 
 
 def get_guess():
@@ -123,15 +125,15 @@ def play_game():
     """
     Method to start the game
     """
-    global turns, correct_guesses, secret_word, word_num, all_guesses
+    global turns, correct_guesses, secret_word, random_word_index, all_guesses
     name = input("What is your name? \n")
     level = get_level()
     print(f'Okay, {name}, lets play hangman!')
     time.sleep(2)
     print("The game is starting!\nTime to  play Hangman!")
     time.sleep(3)
-    word_num = random_word()
-    secret_word = words.cell(word_num, level).value
+    random_word_index = random_word()
+    secret_word = words.cell(random_word_index, level).value
     print(secret_word)
     turns = 10
     correct_guesses = []
@@ -159,24 +161,32 @@ def menu():
     """
     Method for main menu
     """
+    options = {
+        "1": play_game,
+        "2": add_word,
+        "3": exit_program
+    }
     while True:
         print("Hello, welcome to hangman! What would you like to do?")
         option = input(
             'Please choose an option: \n1) Play game 2) Add words 3) Exit  \n')
 
-        if option == "1":
-            play_game()
-        elif option == "2":
-            add_word()
-        elif option == "3":
-            confirm = input(
-                "Are you sure you want to exit the program? \
-                     Press 'y' to confirm: \n")
-            if confirm.lower() == "y":
-                print("Exiting program...")
-                break
+        if option in options:
+            options[option]()
         else:
             print('Please enter one of the options.')
+
+
+def exit_program():
+    """
+    This function closes the program
+    """
+    confirm = input(
+        "Are you sure you want to exit the program? \n \
+             Press 'y' to confirm: \n")
+    if confirm.lower() == "y":
+        print("Exiting program...")
+        quit()
 
 
 menu()
