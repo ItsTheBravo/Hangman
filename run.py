@@ -1,7 +1,26 @@
 import time
+import gspread
+from google.oauth2.service_account import Credentials
 
-secret_word = ("secret")
-turns = 10
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+]
+
+CREDS = Credentials.from_service_account_file('creds.json')
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GPSREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GPSREAD_CLIENT.open('hangman_words')
+
+sales = SHEET.worksheet('Easy')
+
+data = sales.cell(2, 1).value
+
+print(data)
+
+secret_word = sales.cell(2, 1).value
+turns = 100
 correct_guesses = []
 
 
