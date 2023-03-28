@@ -1,4 +1,5 @@
 import time
+import random
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -14,14 +15,6 @@ GPSREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GPSREAD_CLIENT.open('hangman_words')
 
 sales = SHEET.worksheet('Easy')
-
-data = sales.cell(2, 1).value
-
-print(data)
-
-secret_word = sales.cell(2, 1).value
-turns = 100
-correct_guesses = []
 
 
 def get_guess():
@@ -96,16 +89,29 @@ def end_game(win):
         print("Thanks for playing!")
 
 
+def random_word():
+    """
+    This function uses Random to take a random word from the sheet
+    """
+    word = random.randint(2, 11)
+    return word
+
+
 def start():
     """
     Method to start the game
     """
-    global turns, correct_guesses
+    global turns, correct_guesses, secret_word, word_num
     name = input("What is your name? ")
     print(f'Hello, {name}, lets play hangman!')
     time.sleep(2)
     print("The game is starting!\nTime to  play Hangman!")
     time.sleep(3)
+    word_num = random_word()
+    secret_word = sales.cell(word_num, 1).value
+    print(secret_word)
+    turns = 10
+    correct_guesses = []
     while turns > 0:
         print(f"You have {turns} turns left.")
         display_word()
