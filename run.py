@@ -97,18 +97,34 @@ def random_word():
     return word
 
 
+def get_level():
+    """
+    This function takes a number from the player to pick the difficulty
+    """
+    while True:
+        level = input('Pick a difficulty: \n1) Easy 2) Medium 3) Hard  \n')
+
+        if len(level) != 1:
+            print('Please enter a single number.')
+        elif level not in '123':
+            print('Please enter a one of the options.')
+        else:
+            return level
+
+
 def start():
     """
     Method to start the game
     """
     global turns, correct_guesses, secret_word, word_num
-    name = input("What is your name? ")
-    print(f'Hello, {name}, lets play hangman!')
+    name = input("What is your name? \n")
+    level = get_level()
+    print(f'Okay, {name}, lets play hangman!')
     time.sleep(2)
     print("The game is starting!\nTime to  play Hangman!")
     time.sleep(3)
     word_num = random_word()
-    secret_word = sales.cell(word_num, 1).value
+    secret_word = sales.cell(word_num, level).value
     print(secret_word)
     turns = 10
     correct_guesses = []
