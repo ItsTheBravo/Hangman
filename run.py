@@ -1,4 +1,11 @@
-"""Module providing time functionality."""
+"""This python module is written entirely in python.
+This is a basic hangman game and features player input,
+a display of the secret word. It contains functions to
+get information from a google spreadsheet, as well as being
+able to take user input to add to the spreadsheet. The game
+works as a hangman game should, with a menu and an introduction
+to start the game as well as functions to close the program."""
+
 import time
 import random
 import gspread
@@ -133,7 +140,8 @@ def add_word():
 
 def play_game():
     """
-    Method to start the game
+    This method is the main gameplay functions. It calls the necessary 
+    functions to progress through the game and closes the game when turns are 0
     """
     global turns, correct_guesses, secret_word, random_word_index, all_guesses
     name = input("What is your name? \n")
@@ -167,10 +175,16 @@ def play_game():
     end_game(False)
 
 
-def menu():
+def display_main_menu():
     """
-    Method for main menu
+    This menu displays the options for the player to start the game, 
+    edit the spreadsheet, or close the game
     """
+
+    # The first option calls the play_game() function, which starts the game
+    # The section option calls the add_word() function, which allows the user
+    # to add a word to the spreadsheet
+    # The third option closes the program
     options = {
         "1": play_game,
         "2": add_word,
@@ -199,4 +213,4 @@ def exit_program():
         quit()
 
 
-menu()
+display_main_menu()
