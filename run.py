@@ -140,7 +140,7 @@ def add_word():
 
 def play_game():
     """
-    This method is the main gameplay functions. It calls the necessary 
+    This method is the main gameplay functions. It calls the necessary
     functions to progress through the game and closes the game when turns are 0
     """
     global turns, correct_guesses, secret_word, random_word_index, all_guesses
@@ -177,7 +177,7 @@ def play_game():
 
 def display_main_menu():
     """
-    This menu displays the options for the player to start the game, 
+    This menu displays the options for the player to start the game,
     edit the spreadsheet, or close the game
     """
 
