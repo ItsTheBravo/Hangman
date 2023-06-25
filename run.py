@@ -20,12 +20,13 @@ SCOPE = [
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+
 try:
     GPSREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
     SHEET = GPSREAD_CLIENT.open('hangman_words')
-except Exception as e:
-    print("An error occurred while accessing the spreadsheet: \
-        {}".format(str(e)))
+except gspread.exceptions.APIError as e:
+    print(f"An error occurred while accessing the spreadsheet: "
+          f"{str(e)}")
 
 # The worksheet where the words for the game are kept and updated
 word_sheet = SHEET.worksheet('words')
@@ -173,9 +174,10 @@ def add_word():
     try:
         last_row = len(word_sheet.get_all_values())
         word_sheet.update_cell(last_row + 1, level, word)
-    except Exception as e:
-        print("An error occurred while updating the spreadsheet:\
-             {}".format(str(e)))
+    except gspread.exceptions.APIError as api_error:
+        print(f"An error occurred while updating the spreadsheet: "
+              f"{str(api_error)}")
+
     print(f"{word} has been added to the {level} level!")
 
 
