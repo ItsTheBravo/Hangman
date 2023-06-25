@@ -102,8 +102,40 @@ def random_word():
     """
     This function uses Random to take a random word from the sheet
     """
-    word = random.randint(1, len(word_sheet.get_all_values()))
+    word = random.randint(1, len(word_sheet.get_all_values()) - 1)
     return word
+
+
+def get_difficulty_level():
+    """
+    This function takes a number from the player to pick the difficulty
+    """
+    options = {'1': 'Easy', '2': 'Medium', '3': 'Hard'}
+
+    while True:
+        level = input('Pick a difficulty: \n1) Easy 2) Medium 3) Hard  \n')
+
+        if len(level) != 1:
+            print('Please enter a single number.')
+        elif level not in options:
+            print('Please enter a valid option.')
+        else:
+            return options[level]
+
+
+def add_word():
+    """
+    This function allows the user to add words to the spreadsheet
+    """
+    level = get_difficulty_level()
+    word = input("Enter a new word: \n")
+    try:
+        last_row = len(word_sheet.get_all_values())
+        word_sheet.update_cell(last_row + 1, level, word)
+    except Exception as e:
+        print("An error occurred while updating the spreadsheet:\
+             {}".format(str(e)))
+    print(f"{word} has been added to the {level} level!")
 
 
 def play_game():
@@ -112,7 +144,11 @@ def play_game():
     functions to progress through the game and closes the game when turns are 0
     """
     global turns, correct_guesses, secret_word, random_word_index, all_guesses
-    name = input("What is your name? \n")
+    while True:
+        name = input("What is your name?\n")
+        if name.strip() != "":
+            break
+        print("Please enter a valid name.")
     level = get_difficulty_level()
     print(f'Okay, {name}, lets play hangman!')
     time.sleep(2)
@@ -141,38 +177,6 @@ def play_game():
             print("Incorrect!")
             remaining_turns -= 1
     end_game(False)
-
-
-def get_difficulty_level():
-    """
-    This function takes a number from the player to pick the difficulty
-    """
-    options = {'1': 'Easy', '2': 'Medium', '3': 'Hard'}
-
-    while True:
-        level = input('Pick a difficulty: \n1) Easy 2) Medium 3) Hard  \n')
-
-        if len(level) != 1:
-            print('Please enter a single number.')
-        elif level not in options:
-            print('Please enter a valid option.')
-        else:
-            return int(level)
-
-
-def add_word():
-    """
-    This function allows the user to add words to the spreadsheet
-    """
-    level = get_difficulty_level()
-    word = input("Enter a new word: \n")
-    try:
-        last_row = len(word_sheet.get_all_values())
-        word_sheet.update_cell(last_row + 1, level, word)
-    except Exception as e:
-        print("An error occurred while updating the spreadsheet:\
-             {}".format(str(e)))
-    print(f"{word} has been added to the {level} level!")
 
 
 def display_main_menu():
@@ -210,7 +214,7 @@ def exit_program():
              Press 'y' to confirm: \n")
     if confirm.lower() == "y":
         print("Exiting program...")
-        exit()
+        quit()
 
 
 display_main_menu()
