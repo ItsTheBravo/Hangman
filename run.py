@@ -11,6 +11,13 @@ import random
 import gspread
 from google.oauth2.service_account import Credentials
 
+# Global Variables
+TURNS = None
+CORRECT_GUESSES = None
+SECRET_WORD = None
+RANDOM_WORD_INDEX = None
+ALL_GUESSES = None
+
 # Constant Variables for credentials, needed to access the spreadsheet.
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -43,10 +50,10 @@ def get_guess():
             print('Please enter a single letter.')
         elif not player_guess.isalpha():
             print('Please enter a letter.')
-        elif player_guess in correct_guesses or player_guess in all_guesses:
+        elif player_guess in CORRECT_GUESSES or player_guess in ALL_GUESSES:
             print('You have already guessed that letter. Choose again.')
         else:
-            all_guesses.append(player_guess)
+            ALL_GUESSES.append(player_guess)
             return player_guess
 
 
@@ -54,8 +61,8 @@ def display_word():
     """
     This function displays the current state of the word being guessed
     """
-    word = [letter if letter in correct_guesses
-            else "_" for letter in secret_word]
+    word = [letter if letter in CORRECT_GUESSES
+            else "_" for letter in SECRET_WORD]
     print(" ".join(word))
 
 
@@ -63,8 +70,8 @@ def check_win():
     """
     This function checks if the player has won the game
     """
-    for letter in secret_word:
-        if letter not in correct_guesses:
+    for letter in SECRET_WORD:
+        if letter not in CORRECT_GUESSES:
             return False
     return True
 
@@ -92,7 +99,7 @@ def end_game(win):
     if win:
         print("Congratulations, you won!")
     else:
-        print(f"Sorry, you lost. The word was {secret_word}.")
+        print(f"Sorry, you lost. The word was {SECRET_WORD}.")
     if play_again():
         play_game()
     else:
@@ -112,7 +119,7 @@ def play_game():
     This method is the main gameplay functions. It calls the necessary
     functions to progress through the game and closes the game when turns are 0
     """
-    global turns, correct_guesses, secret_word, random_word_index, all_guesses
+    global TURNS, CORRECT_GUESSES, SECRET_WORD, RANDOM_WORD_INDEX, ALL_GUESSES
     while True:
         name = input("What is your name?\n")
         if name.strip() != "":
@@ -123,19 +130,19 @@ def play_game():
     time.sleep(2)
     print("The game is starting!\nTime to  play Hangman!")
     time.sleep(3)
-    random_word_index = random_word()
-    secret_word = word_sheet.cell(random_word_index, level).value
-    print(secret_word)
+    RANDOM_WORD_INDEX = random_word()
+    SECRET_WORD = word_sheet.cell(RANDOM_WORD_INDEX, level).value
+    print(SECRET_WORD)
     remaining_turns = 10
-    correct_guesses = []
-    all_guesses = []
+    CORRECT_GUESSES = []
+    ALL_GUESSES = []
     while remaining_turns > 0:
         print(f"You have {remaining_turns} turns left.")
         display_word()
         player_guess = get_guess()
-        if player_guess in secret_word or player_guess in correct_guesses:
-            correct_guesses.append(player_guess)
-            if player_guess in secret_word:
+        if player_guess in SECRET_WORD or player_guess in CORRECT_GUESSES:
+            CORRECT_GUESSES.append(player_guess)
+            if player_guess in SECRET_WORD:
                 print("Correct!")
                 if check_win():
                     end_game(True)
