@@ -106,38 +106,6 @@ def random_word():
     return word
 
 
-def get_difficulty_level():
-    """
-    This function takes a number from the player to pick the difficulty
-    """
-    options = {'1': 'Easy', '2': 'Medium', '3': 'Hard'}
-
-    while True:
-        level = input('Pick a difficulty: \n1) Easy 2) Medium 3) Hard  \n')
-
-        if len(level) != 1:
-            print('Please enter a single number.')
-        elif level not in options:
-            print('Please enter a valid option.')
-        else:
-            return options[level]
-
-
-def add_word():
-    """
-    This function allows the user to add words to the spreadsheet
-    """
-    level = get_difficulty_level()
-    word = input("Enter a new word: \n")
-    try:
-        last_row = len(word_sheet.get_all_values())
-        word_sheet.update_cell(last_row + 1, level, word)
-    except Exception as e:
-        print("An error occurred while updating the spreadsheet:\
-             {}".format(str(e)))
-    print(f"{word} has been added to the {level} level!")
-
-
 def play_game():
     """
     This method is the main gameplay functions. It calls the necessary
@@ -179,6 +147,38 @@ def play_game():
     end_game(False)
 
 
+def get_difficulty_level():
+    """
+    This function takes a number from the player to pick the difficulty
+    """
+    options = {'1': 'Easy', '2': 'Medium', '3': 'Hard'}
+
+    while True:
+        level = input('Pick a difficulty: \n1) Easy 2) Medium 3) Hard  \n')
+
+        if len(level) != 1:
+            print('Please enter a single number.')
+        elif level not in options:
+            print('Please enter a valid option.')
+        else:
+            return int(level)
+
+
+def add_word():
+    """
+    This function allows the user to add words to the spreadsheet
+    """
+    level = get_difficulty_level()
+    word = input("Enter a new word: \n")
+    try:
+        last_row = len(word_sheet.get_all_values())
+        word_sheet.update_cell(last_row + 1, level, word)
+    except Exception as e:
+        print("An error occurred while updating the spreadsheet:\
+             {}".format(str(e)))
+    print(f"{word} has been added to the {level} level!")
+
+
 def display_main_menu():
     """
     This menu displays the options for the player to start the game,
@@ -214,7 +214,7 @@ def exit_program():
              Press 'y' to confirm: \n")
     if confirm.lower() == "y":
         print("Exiting program...")
-        quit()
+        exit()
 
 
 display_main_menu()
