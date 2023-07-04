@@ -76,11 +76,23 @@ At the end of the game, the program will display whether you won or lost, and as
 
 ## Features
 
-* Random number Generation
-* Player doesn't know the word, just the number of letters
-* Accept User input
-* Keeps track of the letters guessed, correct and incorrect
-* Input validation and error checking
+## Random Number Generation
+The Hangman game utilizes a random number generation feature to select a word for the player to guess. This ensures that each gameplay session is unique and unpredictable. By generating a random number within a defined range, the game selects a word from its word bank or dictionary without any predetermined pattern or bias. This randomness adds excitement and variety to the game, preventing repetition and keeping players engaged.
+
+## Player Doesn't Know the Word, Just the Number of Letters
+In Hangman, the player is not provided with the actual word they need to guess. Instead, they are shown the number of letters in the word and blank spaces representing each letter. This feature adds a layer of challenge and mystery to the gameplay, as players must rely on their knowledge, vocabulary, and deduction skills to guess the correct letters and uncover the hidden word. By concealing the word itself, the game stimulates critical thinking and encourages players to explore different possibilities.
+
+## Accept User Input
+Hangman allows players to enter their guesses through user input. The game prompts the player to input a letter they believe is part of the hidden word. By accepting user input, the game fosters player engagement and active participation. Players can interact with the game, make decisions, and directly influence the gameplay outcome. This feature gives players a sense of control and involvement, enhancing their overall gaming experience.
+
+## Keeps Track of the Letters Guessed, Correct and Incorrect
+To assist players in their word-guessing efforts, Hangman keeps track of the letters they have guessed. The game maintains separate lists or records for correct and incorrect guesses. Whenever the player submits a letter, the game checks whether it is present in the hidden word. If the letter is correct, it is added to the list of correct guesses. If the letter is incorrect, it is added to the list of incorrect guesses. This feature helps players keep track of their progress, identify patterns, and make more informed guesses as they narrow down the possible letters in the word.
+
+## Input Validation and Error Checking
+Hangman incorporates input validation and error checking mechanisms to ensure that the user's input is accurate and appropriate. When the player enters a guess, the game validates the input to ensure it meets the required criteria. This includes checking that the input consists of a single letter, is within the allowable range (e.g., alphabetical characters), and has not been previously guessed. If the input fails any of these validation checks, the game provides appropriate error messages or prompts the player to enter a valid guess. This feature promotes a smooth and error-free gameplay experience, preventing incorrect inputs and guiding players towards valid and meaningful guesses.
+
+By implementing these detailed features, the Hangman game offers a dynamic, challenging, and user-friendly word-guessing experience. Players can enjoy the excitement of guessing the hidden word while benefiting from features that enhance gameplay immersion, provide helpful information, and ensure accurate interaction.
+
 
 ### Future Features
 * Allow the player to Edit and Delete words
@@ -95,6 +107,7 @@ At the end of the game, the program will display whether you won or lost, and as
 ## Bugs
 * I had an issue where my deployed project would not run on Heroku because I was missing a gspread install, turns out I needed to install gspread with pip3 instead of just pip and it fixed it.
 * I had an issue where I wasn't getting the correct words or index errors from the random numbers, I fixed this by using the length of the list for the random number instead of a magic number.
+* Fixed issue where game would crash along with adding a word causing game to crash
 
 ## Dependencies
 
