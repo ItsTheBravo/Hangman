@@ -125,6 +125,26 @@ This project was deployed using Code Institutes mock terminal for Heroku. To dep
 * Link the Heroku App to the repository
 * Click on Deploy
 
+## Local Deployment
+
+To deploy and run the Hangman game locally on your machine, follow the steps below:
+
+* Clone or download the Hangman game repository from GitHub to your local machine.
+* Ensure that you have Python 3.x installed on your system. If not, download and install Python from the official Python website.
+* Navigate to the project directory in your terminal or command prompt.
+* Install the required dependencies by running the following command:
+    pip install gspread
+* Create a Google Sheets document and share it with the email address associated with the service account key.
+* Obtain a service account key file in JSON format for accessing the Google Sheets API. Save this file as "creds.json" in the project directory.
+* Update the necessary configurations in the code, such as the name of the Google Sheets document and the worksheet containing the word list.
+* Run the Hangman game by executing the following command:
+
+    python3 run.py
+
+
+Enjoy playing the Hangman game locally on your machine!
+
+Note: Make sure you have a stable internet connection during the initial setup to authenticate and access the Google Sheets document. Once the game is set up, it can be played offline without an internet connection.
 
 ## Credits
 * Code institute provided the deployment terminal.
