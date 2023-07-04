@@ -100,9 +100,23 @@ By implementing these detailed features, the Hangman game offers a dynamic, chal
 * Display all letters guessed previously
 
 ## Testing
-* Passed the code through online linter, confirmed no errors.
-* Tested valid inputs, tested wrong inputs such as numbers or strings longer than 1 character, or empty inputs.
-* Tested on my local terminal and Heroku Terminal
+The Hangman game has undergone rigorous testing to ensure its functionality, usability, and adherence to the user goals outlined earlier. The following table presents the testing scenarios and their correlation to the user stories:
+
+| User Story | Testing Scenario | Expected Result | Actual Result | Pass/Fail |
+|------------|-----------------|-----------------|---------------|-----------|
+| Entertainment | Play the game and interact with the gameplay elements | Enjoyable and engaging gaming experience | Game provides an enjoyable and engaging experience | Pass |
+| Challenge | Guess the hidden word using deduction skills | Challenging gameplay that tests vocabulary and deduction skills | Game presents challenging word-guessing puzzles | Pass |
+| Convenience | Enter guesses and navigate the game using the menu | Convenient interaction with the game | Game allows easy input and navigation through the menu | Pass |
+| Learning | Encounter a diverse range of words from different categories | Exposure to new words and learning experience | Game presents a variety of words for guessing | Pass |
+
+Additional testing has been performed to verify the correctness and reliability of the Hangman game:
+
+- Valid inputs: Tested various valid inputs, including single letter guesses, to ensure they are accepted and processed correctly.
+- Invalid inputs: Tested inputs such as numbers, strings longer than one character, and empty inputs to verify that appropriate error messages are displayed.
+- Local terminal testing: Ran the game on a local terminal to ensure smooth execution and correct gameplay behavior.
+- Heroku terminal testing: Deployed the game on Heroku and tested it on the Heroku terminal to confirm proper functionality in the cloud environment.
+
+The Hangman game has successfully passed all testing scenarios and met the requirements specified in the user stories. It offers an entertaining, challenging, and user-friendly gaming experience while promoting learning and vocabulary development.
 
 ## Bugs
 * I had an issue where my deployed project would not run on Heroku because I was missing a gspread install, turns out I needed to install gspread with pip3 instead of just pip and it fixed it.
