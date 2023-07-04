@@ -177,15 +177,21 @@ def add_word():
     This function allows the user to add words to the spreadsheet
     """
     level = get_difficulty_level()
-    word = input("Enter a new word: \n")
+    while True:
+        word = input("Enter a new word: \n")
+        if word.strip() == "":
+            print("Please enter a word.")
+        else:
+            break
+
     try:
         last_row = len(word_sheet.get_all_values())
         word_sheet.update_cell(last_row + 1, level, word)
+        print(f"{word} has been added to the {level} level!")
     except gspread.exceptions.APIError as api_error:
         print(f"An error occurred while updating the spreadsheet: "
               f"{str(api_error)}")
-
-    print(f"{word} has been added to the {level} level!")
+        return
 
 
 def display_main_menu():
