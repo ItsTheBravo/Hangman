@@ -132,7 +132,6 @@ def play_game():
     time.sleep(3)
     RANDOM_WORD_INDEX = random_word()
     SECRET_WORD = word_sheet.cell(RANDOM_WORD_INDEX, level).value
-    print(SECRET_WORD)
     remaining_turns = 10
     CORRECT_GUESSES = []
     ALL_GUESSES = []

@@ -70,7 +70,7 @@ When you run the program, it will ask for your name and then display the main me
     Add a word to the list
     Quit
 
-If you choose to play the game, the program will ask you to choose a difficulty level and then start the game. The program will display the current state of the word being guessed, as well as the number of turns remaining. You can then guess a letter by typing it and pressing enter. If you guess correctly, the letter will be added to the word and you will get another turn. If you guess incorrectly, you will lose a turn. You can also choose to add a new word to the list or quit the game.
+If you choose to play the game, the program will ask you for your name: then to choose a difficulty level and then start the game. The program will start up then display the current state of the word being guessed, as well as the number of turns remaining. You can then guess a letter by typing it and pressing enter. If you guess correctly, the letter will be added to the word and you will get another turn. If you guess incorrectly, you will lose a turn. You can also choose to add a new word to the list or quit the game.
 
 At the end of the game, the program will display whether you won or lost, and ask if you want to play again.
 
