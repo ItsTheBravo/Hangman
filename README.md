@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - Overview
+- User Goals
 - Live Demo
 - Getting Started
 - Gameplay
@@ -22,6 +23,38 @@ This is a Python module that allows you to play a simple game of Hangman, while 
 ![Response](response.PNG)
 
 The module uses the gspread library to interact with the Google sheet. The player can also add new words to the document using the program.
+
+
+## User Goals
+
+The Hangman game aims to provide an entertaining and interactive word-guessing experience for players. The following are the main user goals:
+
+- **Entertainment**: Users expect to have an enjoyable and engaging gaming experience while playing Hangman. The game offers a classic word-guessing gameplay that keeps players entertained and immersed.
+
+- **Challenge**: Players seek a game that tests their vocabulary and deduction skills. Hangman presents them with hidden words to guess, challenging their ability to decipher the correct letters and solve the puzzle.
+
+- **Convenience**: Users appreciate the convenience of interacting with the game through player input. Hangman allows players to input their guesses and navigate the game using the menu and introductory prompts.
+
+- **Learning**: Many players enjoy games that enhance their knowledge or vocabulary. Hangman introduces players to various words from different categories, contributing to their learning experience while having fun.
+
+## Achieving User Goals
+
+The Hangman game achieves these user goals and more through the following features and design elements:
+
+- **Interactive Gameplay**: Hangman offers a basic yet engaging word-guessing gameplay experience. Players are prompted to enter their guesses, and the game displays the current state of the word being guessed, providing an interactive and dynamic gameplay environment.
+
+- **Word Display**: The game provides a display of the secret word, showing the correct letters guessed by the player. This feature allows players to track their progress and make more informed guesses as they uncover the hidden word.
+
+- **Word Source**: Hangman incorporates a functionality to retrieve words from a Google Spreadsheet. By accessing the spreadsheet, the game ensures a diverse and constantly updated set of words, offering players a wide range of options and challenges.
+
+- **Player Input and Spreadsheet Interaction**: The game allows players to input new words to be added to the Google Spreadsheet. This feature promotes player engagement and contribution to the game's word repository, fostering a sense of ownership and customization.
+
+- **Difficulty Levels**: Hangman offers different difficulty levels, including easy, medium, and hard. Players can choose the level that suits their skill and preference, allowing them to adjust the game's challenge and cater to different playing styles.
+
+- **Menu and Navigation**: The game features a menu that allows players to start the game, add new words, or exit the program. This menu-based navigation provides a straightforward and convenient way for players to interact with the game and access different functionalities.
+
+By addressing these user goals and incorporating the mentioned features, the Hangman game aims to deliver an entertaining, challenging, and educational gaming experience.
+
 
 ## Getting Started
 
