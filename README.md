@@ -20,7 +20,7 @@ This is a Python module that allows you to play a simple game of Hangman, while 
 
 ![Here is a live version of the project](https://hangman-jp.herokuapp.com/)
 
-![Response](response.PNG)
+![Response](Images/response.PNG)
 
 The module uses the gspread library to interact with the Google sheet. The player can also add new words to the document using the program.
 
@@ -66,13 +66,28 @@ You will also need to install the gspread library using pip.
 
 When you run the program, it will ask for your name and then display the main menu, which offers three options:
 
-    Play the game
-    Add a word to the list
-    Quit
+[Menu](Images/menu.png)
 
-If you choose to play the game, the program will ask you for your name: then to choose a difficulty level and then start the game. The program will start up then display the current state of the word being guessed, as well as the number of turns remaining. You can then guess a letter by typing it and pressing enter. If you guess correctly, the letter will be added to the word and you will get another turn. If you guess incorrectly, you will lose a turn. You can also choose to add a new word to the list or quit the game.
+If you choose to play the game, the program will ask you for your name:
 
-At the end of the game, the program will display whether you won or lost, and ask if you want to play again.
+[name](Images/name.png)
+
+then to choose a difficulty level and then start the game:
+
+[Difficulty](Images/difficulty.png)
+
+The program will start up then display the current state of the word being guessed, as well as the number of turns remaining:  
+
+[Gameplay](Images/gameplay.png)
+
+You can then guess a letter by typing it and pressing enter. If you guess correctly, the letter will be added to the word and you will get another turn:
+
+[Guessing](Images/guessing.png)
+
+If you guess incorrectly, you will lose a turn. Once you guess all letters correctly you will be prompted to play again. You can also choose to add a new word to the list or quit the game:
+
+[Win](Images/win.png)
+
 
 ## Features
 
