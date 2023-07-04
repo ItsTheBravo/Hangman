@@ -137,6 +137,7 @@ The Hangman game has successfully passed all testing scenarios and met the requi
 * I had an issue where my deployed project would not run on Heroku because I was missing a gspread install, turns out I needed to install gspread with pip3 instead of just pip and it fixed it.
 * I had an issue where I wasn't getting the correct words or index errors from the random numbers, I fixed this by using the length of the list for the random number instead of a magic number.
 * Fixed issue where game would crash along with adding a word causing game to crash
+* I have improved the way I used git and how I done my latest commits since first submissions
 
 ## Dependencies
 
