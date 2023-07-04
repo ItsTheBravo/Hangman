@@ -66,27 +66,27 @@ You will also need to install the gspread library using pip.
 
 When you run the program, it will ask for your name and then display the main menu, which offers three options:
 
-[Menu](Images/menu.png)
+![Menu](Images/menu.png)
 
 If you choose to play the game, the program will ask you for your name:
 
-[name](Images/name.png)
+![name](Images/name.png)
 
 then to choose a difficulty level and then start the game:
 
-[Difficulty](Images/difficulty.png)
+![Difficulty](Images/difficulty.png)
 
 The program will start up then display the current state of the word being guessed, as well as the number of turns remaining:  
 
-[Gameplay](Images/gameplay.png)
+![Gameplay](Images/gameplay.png)
 
 You can then guess a letter by typing it and pressing enter. If you guess correctly, the letter will be added to the word and you will get another turn:
 
-[Guessing](Images/guessing.png)
+![Guessing](Images/guessing.png)
 
 If you guess incorrectly, you will lose a turn. Once you guess all letters correctly you will be prompted to play again. You can also choose to add a new word to the list or quit the game:
 
-[Win](Images/win.png)
+![Win](Images/win.png)
 
 
 ## Features
