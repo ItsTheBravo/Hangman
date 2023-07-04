@@ -1,7 +1,20 @@
 # Hangman Game with Google Sheets Integration
 
+## Table of Contents
 
+- Overview
+- Live Demo
+- Getting Started
+- Gameplay
+- Features
+- Future Features
+- Testing
+- Bugs
+- Dependencies
+- Deployment
+- Credits
 
+## Overview
 This is a Python module that allows you to play a simple game of Hangman, while also interacting with a Google Sheets spreadsheet. The game works as follows: The player chooses a difficulty level (Easy, Medium, or Hard) and the program selects a random word from a list in a Google sheet based on that level. The player then tries to guess the word letter by letter, with a limited number of guesses allowed. If the player successfully guesses the word, they win the game. If they use up all their guesses without correctly guessing the word, they lose.
 
 ![Here is a live version of the project](https://hangman-jp.herokuapp.com/)
